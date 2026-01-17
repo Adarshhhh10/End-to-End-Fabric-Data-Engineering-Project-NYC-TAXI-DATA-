@@ -3,9 +3,9 @@ End-to-end data engineering project built using Microsoft Fabric, implementing M
 
 
 nyc-taxi-fabric-data-engineering/                                                                                                                                                                                    
-│
-├── README.md
-│  
+│                                                                                                                                                                                                                    
+├── README.md                                                                                                                                                                                                        
+│                                                                                                                                                                                                                    
 ├── workspace/
 │   └── workspace schema.png
 │
