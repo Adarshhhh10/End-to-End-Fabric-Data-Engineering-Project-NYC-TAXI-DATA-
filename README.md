@@ -4,7 +4,7 @@ End-to-end data engineering project built using Microsoft Fabric, implementing M
 
 nyc-taxi-fabric-data-engineering/                                                                                                                                                                                    
 │                                                                                                                                                                                                                    
-├── README.md                                                                                                                                                                                                        
+├── README.md                                                                                                                                                                                                         
 │                                                                                                                                                                                                                    
 ├── workspace/
 │   └── workspace schema.png
@@ -23,7 +23,7 @@ nyc-taxi-fabric-data-engineering/
 │
 ├── semantic_model/
 │   └── Semantic Model Schema.png
-│
+│   
 ├── reports/
     └── NYC_Taxi_Data_Presentation.pbix
 
