@@ -1,0 +1,14 @@
+let
+  Source = Fabric.Warehouse(null),
+  Navigation = Source{[workspaceId = "83489458-6dc1-4a6d-8724-307e073a7a1c"]}[Data],
+  #"Navigation 1" = Navigation{[warehouseId = "7d48ffc6-bc70-473e-8885-0be8af019ec5"]}[Data],
+  #"Navigation 2" = #"Navigation 1"{[Schema = "stg", Item = "nyctaxi_yellow"]}[Data],
+  #"Removed columns" = Table.RemoveColumns(#"Navigation 2", {"RatecodeID", "store_and_fwd_flag", "fare_amount", "improvement_surcharge", "extra", "mta_tax", "tip_amount", "tolls_amount", "congestion_surcharge", "Airport_fee"}),
+  #"Inserted conditional column" = Table.AddColumn(#"Removed columns", "vendor", each if [VendorID] = 1 then "Creative Mobile Technologies" else if [VendorID] = 2 then "VeriFone" else "Unknown"),
+  #"Reordered columns" = Table.ReorderColumns(#"Inserted conditional column", {"VendorID", "vendor", "tpep_pickup_datetime", "tpep_dropoff_datetime", "passenger_count", "trip_distance", "PULocationID", "DOLocationID", "payment_type", "total_amount"}),
+  #"Inserted conditional column 1" = Table.AddColumn(#"Reordered columns", "Custom", each if [payment_type] = 1 then "Credit card" else if [payment_type] = 2 then "Cash" else if [payment_type] = 3 then "No charge" else if [payment_type] = 4 then "Dispute" else if [payment_type] = 5 then "Unknown" else if [payment_type] = 6 then "voided Trip" else "Unknown"),
+  #"Renamed columns" = Table.RenameColumns(#"Inserted conditional column 1", {{"Custom", "payment_method"}, {"VendorID", "vendor_Id"}, {"PULocationID", "pu_location_id"}, {"DOLocationID", "do_location_id"}}),
+  #"Calculated date" = Table.TransformColumns(#"Renamed columns", {{"tpep_pickup_datetime", each DateTime.Date(_), type nullable date}, {"tpep_dropoff_datetime", each DateTime.Date(_), type nullable date}}),
+  #"Changed column type" = Table.TransformColumnTypes(#"Calculated date", {{"vendor", type text}, {"payment_method", type text}})
+in
+  #"Changed column type"
