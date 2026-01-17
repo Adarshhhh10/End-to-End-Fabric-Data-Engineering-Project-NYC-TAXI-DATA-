@@ -2,7 +2,7 @@
 End-to-end data engineering project built using Microsoft Fabric, implementing Medallion Architecture with Pipelines, Dataflow Gen2, Lakehouse, Warehouse, semantic models, and Power BI dashboards using NYC Taxi data.
 
 
-nyc-taxi-fabric-data-engineering/
+nyc-taxi-fabric-data-engineering/                                                                                                                                                                                    
 │
 ├── README.md
 │  
